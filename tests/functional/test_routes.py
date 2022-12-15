@@ -29,4 +29,8 @@ def test_create_account(testing_client):
     response = testing_client.post('/accounts', json={'name': 'John Doe', 'currency': '€'})
     assert response.status_code == 200
 
-
+def test_update_account(testing_client, id):
+    update = testing_client.put(
+        '/accounts/id', json={'name': 'Joe Doe'})
+    assert update.status_code == 200
+    assert update.json['name'] == 'Joe Doe'
